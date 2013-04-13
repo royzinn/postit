@@ -1,0 +1,18 @@
+<H1>This is Post#show</H1>
+<p>post url: <%= @post.url %></p>
+<p>post title: <%= @post.title %></p>
+<p>post description: <%= @post.description %></p>
+
+<% if @comments %>
+	<% @comments.each do |c| %>
+		<h3><%= c.user.username %> commented:</h3>
+		<p> <%= c.body %> </p>
+	<% end %>
+<% end %>
+
+<%= form_for [@post, @comment] do |f| %>
+	<%= f.label :body %>
+	<%= f.text_area :body %>
+	</br>
+	<%= f.submit "Add Comment" %>
+<% end %>
