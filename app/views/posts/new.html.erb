@@ -1,4 +1,14 @@
-<H1>Create new post</H1>
+<p class="lead">Create new post</p>
+<hr></hr>
+
+<% if @post.errors.any? %>
+	<div class="row">
+		<div class="span4 alert alert-error" %>
+		      <a class="close" data-dismiss="alert">&#215;</a>
+		      <%= content_tag :div, @post.errors.full_messages.join(", ") %>
+		</div>
+	</div>
+<% end %>
 <%= form_for @post do |f| %>
 	<%= f.label :url %>
 	<%= f.text_field :url %>
@@ -7,7 +17,7 @@
 	<%= f.text_field :title %>
 	</br>
 	<%= f.label :description %>
-	<%= f.text_area :description %>
+	<%= f.text_area :description, rows: 5 %>
 	</br>
-	<%= f.submit "Create Post" %>
+	<%= f.submit "Create Post", :class => "btn btn-primary" %>
 <% end %>
