@@ -12,13 +12,15 @@
 				</div>
 			</div>
 		<% end %>
-		<%= form_for [@post, @comment] do |f| %>
-			<%= f.label :body, "Leave a comment" %>
-			<%= f.text_area :body, rows: 3 %>
-			</br>
-			<%= f.submit "Add Comment", :class => "btn btn-primary" %>
+		<% if logged_in? %>
+			<%= form_for [@post, @comment] do |f| %>
+				<%= f.label :body, "Leave a comment" %>
+				<%= f.text_area :body, rows: 3 %>
+				</br>
+				<%= f.submit "Add Comment", :class => "btn btn-primary" %>
+			<% end %>
+			<hr></hr>
 		<% end %>
-		<hr></hr>
 		
 		<% if @comments %>
 			<h5>Comments:</h5>

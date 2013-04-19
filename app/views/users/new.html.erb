@@ -1,0 +1,22 @@
+<p class="lead">Sign Up</p>
+<hr></hr>
+
+<% if @user.errors.any? %>
+  <div class="row">
+    <div class="span4 alert alert-error" %>
+      <a class="close" data-dismiss="alert">&#215;</a>
+      <%= content_tag :div, @user.errors.full_messages.join(", ") %>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username, "User Name" %>
+  <%= f.text_field :username %>
+  </br>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  </br>
+  <%= f.submit "Sign Up", :class => "btn btn-primary" %>
+<% end %>
+
