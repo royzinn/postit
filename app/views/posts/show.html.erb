@@ -4,14 +4,7 @@
 		<hr></hr>
 		<p><%= @post.description %></p>
 		<hr></hr>
-		<% if @comment.errors.any? %>
-			<div class="row">
-				<div class="span4 alert alert-error" %>
-				      <a class="close" data-dismiss="alert">&#215;</a>
-				      <%= content_tag :div, @comment.errors.full_messages.join(", ") %>
-				</div>
-			</div>
-		<% end %>
+		<%= render 'shared/error_messages', obj: @comment %>
 		<% if logged_in? %>
 			<%= form_for [@post, @comment] do |f| %>
 				<%= f.label :body, "Leave a comment" %>

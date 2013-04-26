@@ -13,4 +13,6 @@ Postit::Application.routes.draw do
   resources :users, only: [:new, :create] do
   	resources :comments
   end
+
+  resources :categories, except: [:index, :delete]
 end

@@ -15,9 +15,23 @@ class PostsController < ApplicationController
   	@comment = Comment.new
   end
 
+  def edit 
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(params[:post])
+      flash[:notice] = 'Post was successfully updated.'
+      redirect_to :action => 'show', :id => @post
+    else
+      render :edit
+    end
+  end
+
   def create
   	@post = Post.new(params[:post])
-  	@post.user = User.first
+  	@post.user = current_user
 
   	if @post.save
   		flash[:notice] = "Successfully created new post"
